@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muebles Rubí — Madera con alma</title>
+  <meta name="description" content="Muebles artesanales en madera de pino y parota. Diseño a medida con más de 30 años de tradición familiar en San Pedro Tultepec, Lerma." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #E8E2D6;
+      --text:      #4D362E;
+      --btn:       #A46447;
+      --btn-hover: #8c5038;
+      --accent1:   #87937B;
+      --accent2:   #A98F74;
+      --white:     #FAF8F5;
+      --serif:     'Cormorant Garamond', Georgia, serif;
+      --sans:      'Jost', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid rgba(77,54,46,.12);
+      padding: 0 5vw;
+    }
+
+    .header-inner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      height: 72px;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-right { justify-content: flex-end; }
+
+    .nav-left a, .nav-right a {
+      font-family: var(--sans);
+      font-size: .8rem;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text);
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-left a::after, .nav-right a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--btn);
+      transition: width .25s ease;
+    }
+    .nav-left a:hover::after, .nav-right a:hover::after { width: 100%; }
+    .nav-left a:hover, .nav-right a:hover { color: var(--btn); }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-text {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 400;
+      letter-spacing: .06em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 1.5px;
+      background: var(--text);
+      transition: all .3s;
+    }
+
+    /* mobile nav */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg);
+      border-top: 1px solid rgba(77,54,46,.1);
+      padding: 1rem 5vw 1.5rem;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .65rem 0;
+      border-bottom: 1px solid rgba(77,54,46,.08);
+      font-weight: 400;
+    }
+
+    /* ── HERO ── */
+    #inicio {
+      position: relative;
+      height: 92vh;
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=1600&q=80') center/cover no-repeat;
+    }
+    .hero-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(30,18,12,.32);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-box {
+      background: rgba(232,226,214,.82);
+      backdrop-filter: blur(2px);
+      padding: 3.5rem 4rem;
+      max-width: 620px;
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.4);
+    }
+
+    .hero-eyebrow {
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1.1rem;
+      font-weight: 400;
+    }
+
+    .hero-heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-heading em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--btn);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: .85rem 2.4rem;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn:hover  { background: var(--btn-hover); transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--btn);
+      border: 1px solid var(--btn);
+    }
+    .btn-outline:hover { background: var(--btn); color: var(--white); }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 7rem 5vw; }
+
+    .section-label {
+      font-size: .7rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--accent1);
+      margin-bottom: .9rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: .9rem;
+      color: var(--accent2);
+      max-width: 480px;
+      line-height: 1.75;
+    }
+
+    /* ── DESTACADOS (Inicio featured) ── */
+    #destacados {
+      background: var(--white);
+    }
+
+    .destacados-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .featured-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .featured-card:first-child {
+      grid-row: span 2;
+    }
+
+    .featured-card-img {
+      aspect-ratio: 1/1;
+      overflow: hidden;
+    }
+    .featured-card:first-child .featured-card-img {
+      aspect-ratio: unset;
+      height: 100%;
+    }
+
+    .featured-card-img img {
+      transition: transform .6s ease;
+    }
+    .featured-card:hover .featured-card-img img {
+      transform: scale(1.04);
+    }
+
+    .featured-card-info {
+      padding: 1.1rem 0 .3rem;
+    }
+    .featured-card-info h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: .2rem;
+    }
+    .featured-card-info a {
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent1);
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s, color .2s;
+    }
+    .featured-card-info a:hover { color: var(--btn); border-color: var(--btn); }
+
+    /* ── ABOUT STRIP ── */
+    #nosotros {
+      background: var(--bg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6vw;
+      align-items: center;
+      padding: 7rem 7vw;
+    }
+
+    .about-img {
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      position: relative;
+    }
+    .about-img::before {
+      content: '';
+      position: absolute;
+      inset: -14px 14px 14px -14px;
+      border: 1px solid var(--accent2);
+      z-index: 0;
+    }
+    .about-img img {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-text { padding-right: 2rem; }
+    .about-text p {
+      font-size: .95rem;
+      line-height: 1.85;
+      margin-bottom: 1.4rem;
+      color: var(--text);
+      opacity: .85;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 3rem;
+      margin: 2.5rem 0;
+      flex-wrap: wrap;
+    }
+    .stat strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--btn);
+      line-height: 1;
+    }
+    .stat span {
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent1);
+    }
+
+    /* ── COLECCIÓN ── */
+    #coleccion {
+      background: var(--white);
+    }
+
+    .coleccion-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .coleccion-header .section-sub {
+      margin: 0 auto;
+      text-align: center;
+      max-width: 560px;
+    }
+
+    .coleccion-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .tab-btn {
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid rgba(77,54,46,.2);
+      color: var(--text);
+      padding: .55rem 1.4rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--text);
+      color: var(--white);
+      border-color: var(--text);
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2.5rem 2rem;
+    }
+
+    .catalog-card { cursor: pointer; }
+
+    .catalog-card-img {
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: var(--bg);
+      margin-bottom: 1rem;
+    }
+    .catalog-card-img img { transition: transform .55s ease; }
+    .catalog-card:hover .catalog-card-img img { transform: scale(1.05); }
+
+    .catalog-card h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: .25rem;
+    }
+    .catalog-card .card-sub {
+      font-size: .78rem;
+      color: var(--accent1);
+      margin-bottom: .6rem;
+    }
+    .catalog-card .ver-mas {
+      font-size: .72rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border-bottom: 1px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+    .catalog-card:hover .ver-mas { color: var(--btn); border-color: var(--btn); }
+
+    .coleccion-cta {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(77,54,46,.1);
+    }
+    .coleccion-cta p {
+      font-size: .9rem;
+      color: var(--accent1);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── PROCESO / A MEDIDA ── */
+    #amedida {
+      background: var(--bg);
+      padding: 7rem 5vw;
+    }
+
+    .amedida-intro {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 5rem;
+    }
+    .amedida-intro .section-sub { margin: 0 auto; }
+
+    .proceso-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-bottom: 6rem;
+    }
+
+    .paso {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      position: relative;
+      text-align: center;
+      transition: transform .25s;
+    }
+    .paso:hover { transform: translateY(-4px); }
+
+    .paso-num {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--accent2);
+      opacity: .35;
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .paso h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: .7rem;
+    }
+    .paso p {
+      font-size: .85rem;
+      line-height: 1.75;
+      color: var(--text);
+      opacity: .75;
+    }
+
+    .amedida-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw;
+      align-items: center;
+    }
+
+    .showcase-text .section-title { margin-bottom: 1.5rem; }
+    .showcase-text p {
+      font-size: .92rem;
+      line-height: 1.85;
+      opacity: .85;
+      margin-bottom: 1.2rem;
+    }
+    .showcase-text .btn { margin-top: .8rem; }
+
+    .showcase-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 280px 180px;
+      gap: 6px;
+    }
+    .showcase-gallery .g1 {
+      grid-column: 1 / -1;
+      overflow: hidden;
+    }
+    .showcase-gallery .g1 img,
+    .showcase-gallery .g2 img,
+    .showcase-gallery .g3 img { transition: transform .6s ease; }
+    .showcase-gallery .g2, .showcase-gallery .g3 { overflow: hidden; }
+    .showcase-gallery:hover .g1 img { transform: scale(1.03); }
+
+    /* ── TESTIMONIAL ── */
+    #testimonios {
+      background: var(--text);
+      color: var(--white);
+      text-align: center;
+      padding: 6rem 5vw;
+    }
+    #testimonios .section-label { color: var(--accent2); }
+    #testimonios .section-title { color: var(--white); margin: 0 auto 1rem; max-width: 700px; }
+
+    .testimonial-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.5vw, 2rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      max-width: 680px;
+      margin: 0 auto 2rem;
+      opacity: .9;
+    }
+
+    .testimonial-author {
+      font-size: .78rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+    }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6vw;
+      align-items: start;
+      padding: 7rem 7vw;
+    }
+
+    .contacto-info .section-title { margin-bottom: 1.5rem; }
+    .contacto-info p {
+      font-size: .9rem;
+      line-height: 1.85;
+      opacity: .8;
+      margin-bottom: 2rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    .info-icon {
+      width: 36px; height: 36px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--btn);
+      font-size: 1rem;
+    }
+    .info-item strong {
+      display: block;
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent1);
+      margin-bottom: .2rem;
+      font-weight: 400;
+    }
+    .info-item span {
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+
+    .contacto-form { }
+    .form-group {
+      margin-bottom: 1.4rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent1);
+      margin-bottom: .5rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid transparent;
+      border-bottom-color: rgba(77,54,46,.25);
+      padding: .75rem 0;
+      font-family: var(--sans);
+      font-size: .9rem;
+      font-weight: 300;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-bottom-color: var(--btn);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group select { cursor: pointer; }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(77,54,46,.4); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--accent1);
+      color: var(--white);
+      padding: 5rem 5vw 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.15);
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-brand .logo-text { color: var(--white); font-size: 1.4rem; }
+    .footer-brand p {
+      font-size: .85rem;
+      line-height: 1.8;
+      opacity: .75;
+      margin: 1.2rem 0 2rem;
+      max-width: 300px;
+    }
+
+    .footer-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      background: #25D366;
+      color: #fff;
+      font-family: var(--sans);
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .8rem 1.6rem;
+      transition: background .2s;
+    }
+    .footer-cta-btn:hover { background: #1ebe57; }
+    .footer-cta-btn svg { flex-shrink: 0; }
+
+    .footer-col h4 {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      opacity: .6;
+      margin-bottom: 1.4rem;
+      font-weight: 400;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .7rem; }
+    .footer-col ul li a {
+      font-size: .85rem;
+      opacity: .75;
+      transition: opacity .2s;
+    }
+    .footer-col ul li a:hover { opacity: 1; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-size: .78rem;
+      opacity: .55;
+    }
+
+    /* ── WHATSAPP BUBBLE ── */
+    .wa-bubble {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(37,211,102,.45);
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .wa-bubble:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 24px rgba(37,211,102,.6);
+    }
+    .wa-bubble svg { width: 30px; height: 30px; }
+
+    .wa-tooltip {
+      position: fixed;
+      bottom: 5.8rem;
+      right: 2rem;
+      background: var(--text);
+      color: var(--white);
+      font-size: .78rem;
+      padding: .55rem 1rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+      transform: translateY(4px);
+    }
+    .wa-bubble:hover + .wa-tooltip { opacity: 1; transform: translateY(0); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 40px; height: 1px;
+      background: var(--accent2);
+      margin: 1.4rem 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .featured-grid { grid-template-columns: 1fr 1fr; }
+      .featured-card:first-child { grid-row: auto; }
+      .proceso-steps { grid-template-columns: 1fr 1fr; }
+      #nosotros, .amedida-showcase, #contacto { grid-template-columns: 1fr; }
+      .about-img { aspect-ratio: 16/9; }
+      .about-img::before { display: none; }
+      .about-text { padding-right: 0; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-left, .nav-right { display: none; }
+      .hamburger { display: flex; }
+      .header-inner { grid-template-columns: auto 1fr auto; gap: 0; }
+      .logo { justify-content: flex-start; }
+      section { padding: 4.5rem 5vw; }
+      #nosotros { padding: 4.5rem 5vw; }
+      .hero-box { padding: 2rem 1.5rem; }
+      .featured-grid { grid-template-columns: 1fr; }
+      .proceso-steps { grid-template-columns: 1fr; }
+      .showcase-gallery { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .showcase-gallery .g1 { grid-column: auto; }
+      .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+      .catalog-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header id="site-header">
+  <div class="header-inner">
+    <ul class="nav-left">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#coleccion">Colección</a></li>
+    </ul>
+
+    <div class="logo">
+      <!-- If logo image exists: -->
+      <!-- <img src="assets/logo.jpg" alt="Muebles Rubí" /> -->
+      <span class="logo-text">Muebles Rubí</span>
+    </div>
+
+    <ul class="nav-right">
+      <li><a href="#amedida">A Medida</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="#inicio"    onclick="closeMobileNav()">Inicio</a>
+    <a href="#coleccion" onclick="closeMobileNav()">Colección</a>
+    <a href="#amedida"   onclick="closeMobileNav()">A Medida</a>
+    <a href="#contacto"  onclick="closeMobileNav()">Contacto</a>
+  </nav>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="inicio" style="padding:0;">
+  <div class="hero-img"></div>
+  <div class="hero-overlay">
+    <div class="hero-box">
+      <p class="hero-eyebrow">San Pedro Tultepec · Lerma · Más de 30 años</p>
+      <h1 class="hero-heading">Tradición y diseño<br><em>en cada detalle.</em></h1>
+      <a href="#contacto" class="btn">Cotiza tu diseño</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DESTACADOS ══════════ -->
+<section id="destacados">
+  <div class="destacados-header">
+    <div>
+      <p class="section-label">Lo más buscado</p>
+      <h2 class="section-title">Piezas que enamoran</h2>
+    </div>
+    <a href="#coleccion" class="btn btn-outline" style="font-size:.75rem;padding:.7rem 1.6rem;">Ver colección completa</a>
+  </div>
+
+  <div class="featured-grid">
+    <div class="featured-card">
+      <div class="featured-card-img">
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80" alt="Sala de madera maciza parota" />
+      </div>
+      <div class="featured-card-info">
+        <h3>Sala Parota Natural</h3>
+        <a href="#contacto">Ver detalles</a>
+      </div>
+    </div>
+    <div class="featured-card">
+      <div class="featured-card-img">
+        <img src="https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=800&q=80" alt="Comedor de madera de parota" />
+      </div>
+      <div class="featured-card-info">
+        <h3>Comedor 8 Sillas</h3>
+        <a href="#contacto">Ver detalles</a>
+      </div>
+    </div>
+    <div class="featured-card">
+      <div class="featured-card-img">
+        <img src="https://images.unsplash.com/photo-1616627577385-322c6671d5dd?w=800&q=80" alt="Ropero de pino tallado" />
+      </div>
+      <div class="featured-card-info">
+        <h3>Ropero Tallado Pino</h3>
+        <a href="#contacto">Ver detalles</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ NOSOTROS ══════════ -->
+<section id="nosotros">
+  <div class="about-img">
+    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80" alt="Taller de carpintería Muebles Rubí" />
+  </div>
+  <div class="about-text">
+    <p class="section-label">Nuestra historia</p>
+    <h2 class="section-title">Más de tres décadas<br><em>haciendo muebles con alma.</em></h2>
+    <div class="divider"></div>
+    <p>
+      Somos una empresa familiar con más de 30 años de tradición artesanal en San Pedro Tultepec, Lerma. Cada pieza sale de nuestras manos con la misma dedicación que el primer día.
+    </p>
+    <p>
+      Trabajamos principalmente madera de <strong>pino y parota</strong> — maderas nobles que envejecen con dignidad. Nuestro equipo de carpinteros, pintores y lijadores domina técnicas que no se aprenden en libros.
+    </p>
+    <div class="stats-row">
+      <div class="stat"><strong>30+</strong><span>Años de oficio</span></div>
+      <div class="stat"><strong>7–15</strong><span>Días de entrega</span></div>
+      <div class="stat"><strong>100%</strong><span>Hecho a mano</span></div>
+    </div>
+    <a href="#amedida" class="btn">Conoce nuestro proceso</a>
+  </div>
+</section>
+
+<!-- ══════════ COLECCIÓN ══════════ -->
+<section id="coleccion">
+  <div class="coleccion-header">
+    <p class="section-label">Catálogo</p>
+    <h2 class="section-title">Nuestra Colección</h2>
+    <p class="section-sub">Piezas listas para llevar a tu hogar o como punto de partida para un diseño completamente personalizado.</p>
+  </div>
+
+  <div class="coleccion-tabs">
+    <button class="tab-btn active" onclick="filterCatalog('todos', this)">Todos</button>
+    <button class="tab-btn" onclick="filterCatalog('salas', this)">Salas</button>
+    <button class="tab-btn" onclick="filterCatalog('comedores', this)">Comedores</button>
+    <button class="tab-btn" onclick="filterCatalog('roperos', this)">Roperos</button>
+    <button class="tab-btn" onclick="filterCatalog('sillones', this)">Sillones</button>
+    <button class="tab-btn" onclick="filterCatalog('sofa-camas', this)">Sofá Camas</button>
+    <button class="tab-btn" onclick="filterCatalog('centros', this)">Centros de Mesa</button>
+    <button class="tab-btn" onclick="filterCatalog('pantallas', this)">Muebles Pantalla</button>
+  </div>
+
+  <div class="catalog-grid" id="catalog-grid">
+    <!-- Cards injected by JS from data below -->
+  </div>
+
+  <div class="coleccion-cta">
+    <p>¿No encuentras lo que buscas? Podemos crearlo especialmente para ti.</p>
+    <a href="#amedida" class="btn">Diseña a tu medida</a>
+  </div>
+</section>
+
+<!-- ══════════ A MEDIDA ══════════ -->
+<section id="amedida">
+  <div class="amedida-intro">
+    <p class="section-label">Diseño a medida</p>
+    <h2 class="section-title">Tu idea se convierte<br><em>en madera real.</em></h2>
+    <div class="divider" style="margin: 1.4rem auto;"></div>
+    <p class="section-sub">
+      Trae tu boceto, una foto de Pinterest o solo una descripción — nosotros nos encargamos de transformarlo en un mueble único, hecho a mano especialmente para ti.
+    </p>
+  </div>
+
+  <div class="proceso-steps">
+    <div class="paso">
+      <div class="paso-num">01</div>
+      <h3>Tu idea</h3>
+      <p>Compártenos tu boceto, referencia o idea por WhatsApp. Sin complicaciones, sin formularios.</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">02</div>
+      <h3>Cotización</h3>
+      <p>En 24 horas te damos un presupuesto detallado con materiales, medidas y tiempo de entrega.</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">03</div>
+      <h3>Fabricación</h3>
+      <p>Nuestros carpinteros construyen tu pieza a mano con madera seleccionada en nuestro taller.</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">04</div>
+      <h3>Entrega</h3>
+      <p>Tu mueble llega a tu puerta entre 7 y 15 días hábiles, listo para ser parte de tu hogar.</p>
+    </div>
+  </div>
+
+  <div class="amedida-showcase">
+    <div class="showcase-text">
+      <p class="section-label">Del bosque a tu sala</p>
+      <h2 class="section-title">Pino y parota:<br><em>maderas que duran generaciones.</em></h2>
+      <p>
+        Trabajamos exclusivamente con maderas nobles que mejoran con el tiempo. La parota, con sus vetas únicas e irrepetibles, convierte cada comedor o mesa en una obra singular.
+      </p>
+      <p>
+        El pino macizo, tratado y lacado en nuestro taller, ofrece la calidez perfecta para recámaras y espacios de estar. Ninguna pieza es idéntica — eso es su valor.
+      </p>
+      <a href="#contacto" class="btn" style="margin-top:.8rem;">Inicia tu proyecto</a>
+    </div>
+    <div class="showcase-gallery">
+      <div class="g1">
+        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=900&q=80" alt="Taller de carpintería artesanal" />
+      </div>
+      <div class="g2">
+        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80" alt="Detalle de madera de parota" />
+      </div>
+      <div class="g3">
+        <img src="https://images.unsplash.com/photo-1567016526105-22da7c13161a?w=600&q=80" alt="Mueble terminado de madera" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIAL ══════════ -->
+<section id="testimonios">
+  <p class="section-label">Lo que dicen nuestros clientes</p>
+  <blockquote class="testimonial-quote">
+    "El comedor que nos hicieron es la pieza central de nuestra casa. La calidad de la parota es increíble — y lo entregaron antes de lo prometido."
+  </blockquote>
+  <p class="testimonial-author">— Familia Hernández, Ciudad de México</p>
+</section>
+
+<!-- ══════════ CONTACTO ══════════ -->
+<section id="contacto">
+  <div class="contacto-info">
+    <p class="section-label">Hablemos</p>
+    <h2 class="section-title">¿Listo para crear<br><em>algo especial?</em></h2>
+    <p>
+      Visítanos en nuestros locales sobre la Av. de los Muebles en San Pedro Tultepec, escríbenos por WhatsApp o déjanos tus datos y nosotros te contactamos.
+    </p>
+
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      </div>
+      <div>
+        <strong>Ubicación</strong>
+        <span>Av. de los Muebles, San Pedro Tultepec<br>Lerma, Estado de México</span>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <div>
+        <strong>WhatsApp</strong>
+        <!-- REPLACE with your real number -->
+        <span><a href="https://wa.me/527XXXXXXXXX" style="color:var(--btn);">+52 7XX XXX XXXX</a></span>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <strong>Tiempo de entrega</strong>
+        <span>7 a 15 días hábiles desde la confirmación del pedido</span>
+      </div>
+    </div>
+
+    <a href="https://wa.me/527XXXXXXXXX" class="btn" style="margin-top:1rem;display:inline-flex;align-items:center;gap:.6rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.484 2 12.017c0 1.987.528 3.851 1.448 5.454L2 22l4.644-1.418A9.945 9.945 0 0012 22c5.522 0 10-4.478 10-10S17.522 2 12 2z"/></svg>
+      Escríbenos ahora
+    </a>
+  </div>
+
+  <div class="contacto-form">
+    <p class="section-label">Formulario de contacto</p>
+    <form onsubmit="handleFormSubmit(event)">
+      <div class="form-group">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" placeholder="Tu nombre" required />
+      </div>
+      <div class="form-group">
+        <label for="telefono">WhatsApp / Teléfono</label>
+        <input type="tel" id="telefono" placeholder="+52 XXX XXX XXXX" />
+      </div>
+      <div class="form-group">
+        <label for="tipo">Tipo de mueble</label>
+        <select id="tipo">
+          <option value="">Selecciona una categoría</option>
+          <option>Sala</option>
+          <option>Comedor</option>
+          <option>Ropero</option>
+          <option>Sillón</option>
+          <option>Sofá cama</option>
+          <option>Centro de mesa</option>
+          <option>Mueble para pantalla</option>
+          <option>Diseño personalizado</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="mensaje">Cuéntanos tu idea</label>
+        <textarea id="mensaje" placeholder="Describe tus medidas, materiales preferidos, o comparte una imagen de referencia..."></textarea>
+      </div>
+      <button type="submit" class="btn" style="width:100%;justify-content:center;text-align:center;">Enviar consulta</button>
+    </form>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-text">Muebles Rubí</div>
+      <p>Artesanos de la madera desde hace más de 30 años. Piezas únicas de pino y parota, hechas a mano en San Pedro Tultepec, Lerma.</p>
+      <!-- REPLACE with your real number -->
+      <a href="https://wa.me/527XXXXXXXXX" class="footer-cta-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.484 2 12.017c0 1.987.528 3.851 1.448 5.454L2 22l4.644-1.418A9.945 9.945 0 0012 22c5.522 0 10-4.478 10-10S17.522 2 12 2z"/></svg>
+        ¿Tienes una idea? Hablemos
+      </a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#destacados">Destacados</a></li>
+        <li><a href="#coleccion">Colección</a></li>
+        <li><a href="#amedida">A Medida</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Categorías</h4>
+      <ul>
+        <li><a href="#coleccion">Salas</a></li>
+        <li><a href="#coleccion">Comedores</a></li>
+        <li><a href="#coleccion">Roperos</a></li>
+        <li><a href="#coleccion">Sillones</a></li>
+        <li><a href="#coleccion">Sofá Camas</a></li>
+        <li><a href="#coleccion">Muebles Pantalla</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Muebles Rubí — San Pedro Tultepec, Lerma, Estado de México</p>
+    <p>Hecho con ♥ por la familia</p>
+  </div>
+</footer>
+
+<!-- ══════════ WHATSAPP BUBBLE ══════════ -->
+<!-- REPLACE with your real number -->
+<a href="https://wa.me/527XXXXXXXXX" class="wa-bubble" aria-label="Contactar por WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.484 2 12.017c0 1.987.528 3.851 1.448 5.454L2 22l4.644-1.418A9.945 9.945 0 0012 22c5.522 0 10-4.478 10-10S17.522 2 12 2z"/></svg>
+</a>
+<div class="wa-tooltip">¡Escríbenos ahora!</div>
+
+<script>
+  /* ── CATALOG DATA ── */
+  const products = [
+    { id:1, cat:'salas',      name:'Sala Nogal 3+2',        sub:'Pino macizo · 5 piezas',    img:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=75' },
+    { id:2, cat:'salas',      name:'Sala Colonial',          sub:'Pino macizo · 3 piezas',    img:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=75' },
+    { id:3, cat:'comedores',  name:'Comedor Parota 6 sillas',sub:'Parota · 7 piezas',         img:'https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=75' },
+    { id:4, cat:'comedores',  name:'Comedor Rústico 8 sillas',sub:'Parota · 9 piezas',        img:'https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=600&q=75' },
+    { id:5, cat:'roperos',    name:'Ropero Tallado 4 puertas',sub:'Pino macizo · 4 puertas',  img:'https://images.unsplash.com/photo-1616627577385-322c6671d5dd?w=600&q=75' },
+    { id:6, cat:'roperos',    name:'Ropero Minimalista',     sub:'Pino · 2 puertas corredizas',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75' },
+    { id:7, cat:'sillones',   name:'Sillón Ejecutivo',       sub:'Pino · Tapizado premium',   img:'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=75' },
+    { id:8, cat:'sillones',   name:'Sillón Orejero',         sub:'Pino · Tela texturizada',   img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=75' },
+    { id:9, cat:'sofa-camas', name:'Sofá Cama Colonial',     sub:'Pino macizo · Matrimonial', img:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=75' },
+    { id:10,cat:'centros',    name:'Centro de Mesa Parota',  sub:'Parota natural · 120×60cm', img:'https://images.unsplash.com/photo-1565183997392-2f6f122e5912?w=600&q=75' },
+    { id:11,cat:'centros',    name:'Centro Minimalista',     sub:'Pino · 100×50cm',           img:'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=75' },
+    { id:12,cat:'pantallas',  name:'Mueble Pantalla 65"',    sub:'Pino macizo · Con cajones', img:'https://images.unsplash.com/photo-1593359677879-a4bb92f4834b?w=600&q=75' },
+    { id:13,cat:'salas',      name:'Sala Campestre',         sub:'Pino · 4 piezas',           img:'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600&q=75' },
+    { id:14,cat:'pantallas',  name:'Rack TV Flotante',       sub:'Pino · Para muros',         img:'https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=600&q=75' },
+    { id:15,cat:'comedores',  name:'Comedor Industrial 4 p.',sub:'Parota y metal · 5 piezas', img:'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=75' },
+  ];
+
+  function renderCatalog(filter) {
+    const grid = document.getElementById('catalog-grid');
+    const items = filter === 'todos' ? products : products.filter(p => p.cat === filter);
+    grid.innerHTML = items.map(p => `
+      <div class="catalog-card" onclick="openWhatsApp('${p.name}')">
+        <div class="catalog-card-img">
+          <img src="${p.img}" alt="${p.name}" loading="lazy" />
+        </div>
+        <h3>${p.name}</h3>
+        <p class="card-sub">${p.sub}</p>
+        <span class="ver-mas">Ver detalles →</span>
+      </div>
+    `).join('');
+  }
+
+  function filterCatalog(cat, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCatalog(cat);
+  }
+
+  renderCatalog('todos');
+
+  /* ── WHATSAPP ── */
+  // REPLACE 527XXXXXXXXX with real number (country code + number, no + or spaces)
+  const WA_NUMBER = '527XXXXXXXXX';
+
+  function openWhatsApp(product) {
+    const msg = encodeURIComponent(`Hola, me interesa el mueble: *${product}*. ¿Podrían darme más información?`);
+    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+  }
+
+  /* ── FORM ── */
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const nombre  = document.getElementById('nombre').value;
+    const tipo    = document.getElementById('tipo').value;
+    const mensaje = document.getElementById('mensaje').value;
+    const text    = encodeURIComponent(`Hola, soy *${nombre}*.\nMe interesa: ${tipo}.\n\n${mensaje}`);
+    window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, '_blank');
+  }
+
+  /* ── MOBILE NAV ── */
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobile-nav').classList.toggle('open');
+  });
+  function closeMobileNav() {
+    document.getElementById('mobile-nav').classList.remove('open');
+  }
+
+  /* ── HEADER SCROLL SHADOW ── */
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.style.boxShadow = window.scrollY > 10
+      ? '0 2px 20px rgba(77,54,46,.1)'
+      : 'none';
+  });
+</script>
+</body>
+</html>

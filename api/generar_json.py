@@ -10,8 +10,12 @@ Credenciales se leen de un archivo .env (que NO se sube a GitHub).
 
 import os
 import json
+import pathlib
 import psycopg
 from dotenv import load_dotenv
+
+# Output always goes to web-publico/productos.json, regardless of CWD
+OUTPUT = pathlib.Path(__file__).parent.parent / "web-publico" / "productos.json"
 
 # 1. Cargar las credenciales desde el archivo .env
 load_dotenv()
@@ -64,10 +68,10 @@ def obtener_productos():
 def main():
     productos = obtener_productos()
 
-    with open("productos.json", "w", encoding="utf-8") as f:
+    with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(productos, f, ensure_ascii=False, indent=2)
 
-    print(f"Listo: {len(productos)} productos escritos en productos.json")
+    print(f"Listo: {len(productos)} productos escritos en {OUTPUT}")
 
 
 if __name__ == "__main__":

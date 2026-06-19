@@ -8,32 +8,32 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-### Python environment
+### Python environment (run from `api/`)
 
 ```bash
 # Activate virtual environment (Windows)
 venv\Scripts\activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -r api/requirements.txt
 
-# Generate the public product catalog from the database
-python generar_json.py
+# Generate the public product catalog (writes to web-publico/productos.json)
+python api/generar_json.py
+
+# Run the API
+uvicorn api.main:app --reload
 ```
 
 ### Database (psql)
 
 ```bash
 # Load the schema (run once to initialize)
-psql -U <user> -d <dbname> -f schema.sql
-
-# Or from inside psql
-\i 'D:/Faus_/galerias_rubi/schema.sql'
+psql -U <user> -d <dbname> -f db/schema.sql
 ```
 
 ### Environment variables
 
-Create a `.env` file (never commit it) with:
+Create `api/.env` (never commit it):
 
 ```
 DB_HOST=
@@ -48,10 +48,27 @@ DB_PASSWORD=
 ### Data flow
 
 ```
-PostgreSQL DB  →  generar_json.py  →  productos.json  →  index.html (GitHub Pages)
+PostgreSQL DB  →  api/generar_json.py  →  web-publico/productos.json  →  index.html (GitHub Pages)
 ```
 
-`generar_json.py` is the publish step: run it after updating products in the DB to regenerate `productos.json`, then commit and push so the static site picks up the changes.
+`generar_json.py` is the publish step: run it after updating products in the DB to regenerate `productos.json`, then commit and push. The GitHub Actions workflow (`.github/workflows/deploy-pages.yml`) deploys `web-publico/` to GitHub Pages automatically on every push to `main` that touches that folder.
+
+### Folder layout
+
+```
+galerias-rubi/
+├── web-publico/     ← static site → GitHub Pages
+├── api/             ← FastAPI + bridge script → VPS
+├── admin/           ← future sisters' interface → VPS
+├── db/              ← schema.sql (source of truth)
+├── docs/            ← diagrams and internal docs
+├── .github/
+│   └── workflows/
+│       └── deploy-pages.yml
+├── .gitignore
+├── CLAUDE.md
+└── README.md
+```
 
 ### Database schema (`schema.sql`)
 

@@ -9,6 +9,7 @@ __pycache__/
 *.pyc
 venv/
 .venv/
+tempCodeRunnerFile.py
 
 # OS / editor junk
 .DS_Store

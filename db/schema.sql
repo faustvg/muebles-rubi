@@ -154,6 +154,7 @@ CREATE TABLE notas (
     telefono         VARCHAR(20),
     consideraciones  TEXT,
     usuario_id       INTEGER REFERENCES usuarios(id) ON DELETE SET NULL
+    foto_nota        TEXT
 );
 
 

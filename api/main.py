@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()  # Debe correr antes de importar api.* que lean env vars en su módulo
 
-from fastapi import Depends, FastAPI, HTTPException, Query, Request
+from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from psycopg_pool import AsyncConnectionPool
@@ -83,15 +83,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(catalogo_router)
-app.include_router(dashboard_router)
-app.include_router(fotos_router)
-app.include_router(notas_router)
-app.include_router(publico_router)
-app.include_router(usuarios_router)
+# ---------------------------------------------------------------------------
+# Router padre — todos los endpoints de la API viven bajo /api
+# Los routers hijos se incluyen aquí (no directamente en app).
+# ---------------------------------------------------------------------------
+api_router = APIRouter(prefix="/api")
+
+api_router.include_router(catalogo_router)
+api_router.include_router(dashboard_router)
+api_router.include_router(fotos_router)
+api_router.include_router(notas_router)
+api_router.include_router(publico_router)
+api_router.include_router(usuarios_router)
+
+app.include_router(api_router)
 
 # Servir las fotos subidas como archivos estáticos.
-# TEMPORAL para desarrollo — en producción nginx servirá /uploads/ directamente.
+# FUERA de /api: nginx las servirá directo en producción; aquí las sirve FastAPI en dev.
 # StaticFiles requiere que el directorio exista al montar, así que lo creamos.
 Path("uploads/productos").mkdir(parents=True, exist_ok=True)
 Path("uploads/notas").mkdir(parents=True, exist_ok=True)
@@ -108,10 +116,10 @@ class LoginRequest(BaseModel):
 
 
 # ---------------------------------------------------------------------------
-# Auth endpoints
+# Auth endpoints  →  /api/login  /api/logout  /api/yo
 # ---------------------------------------------------------------------------
 
-@app.post("/login")
+@api_router.post("/login")
 async def login(data: LoginRequest, request: Request, conn=Depends(database.get_db)):
     async with conn.cursor() as cur:
         await cur.execute(
@@ -139,19 +147,20 @@ async def login(data: LoginRequest, request: Request, conn=Depends(database.get_
     return {"ok": True, "username": _username, "nombre": _nombre, "rol": _rol}
 
 
-@app.post("/logout")
+@api_router.post("/logout")
 async def logout(request: Request):
     request.session.clear()
     return {"ok": True}
 
 
-@app.get("/yo", response_model=UsuarioActual)
+@api_router.get("/yo", response_model=UsuarioActual)
 async def quien_soy(usuario: UsuarioActual = Depends(get_usuario_actual)):
     return usuario
 
 
 # ---------------------------------------------------------------------------
-# Catalog read endpoints (public — used by the static site and admin UI)
+# Catalog read endpoints  →  /api/categorias  /api/proveedores  /api/productos
+# (lectura; los writes viven en catalogo_router ya incluido arriba)
 # ---------------------------------------------------------------------------
 
 class Categoria(BaseModel):
@@ -178,7 +187,7 @@ class Producto(BaseModel):
     categoria: Optional[str]
 
 
-@app.get("/categorias", response_model=list[Categoria])
+@api_router.get("/categorias", response_model=list[Categoria])
 async def listar_categorias(conn=Depends(database.get_db)):
     async with conn.cursor() as cur:
         await cur.execute(
@@ -191,7 +200,7 @@ async def listar_categorias(conn=Depends(database.get_db)):
     ]
 
 
-@app.get("/proveedores", response_model=list[Proveedor])
+@api_router.get("/proveedores", response_model=list[Proveedor])
 async def listar_proveedores(conn=Depends(database.get_db)):
     async with conn.cursor() as cur:
         await cur.execute("SELECT id, proveedor FROM proveedores ORDER BY proveedor")
@@ -199,7 +208,7 @@ async def listar_proveedores(conn=Depends(database.get_db)):
     return [{"id": r[0], "proveedor": r[1]} for r in rows]
 
 
-@app.get("/productos", response_model=list[Producto])
+@api_router.get("/productos", response_model=list[Producto])
 async def listar_productos(
     categoria_id: Optional[int] = Query(None, description="Filtrar por ID de categoría"),
     conn=Depends(database.get_db),
@@ -226,7 +235,7 @@ async def listar_productos(
     return [_row_to_producto(r) for r in rows]
 
 
-@app.get("/productos/{producto_id}", response_model=Producto)
+@api_router.get("/productos/{producto_id}", response_model=Producto)
 async def obtener_producto(producto_id: int, conn=Depends(database.get_db)):
     sql = """
         SELECT
@@ -270,7 +279,7 @@ def _row_to_producto(r) -> dict:
 # Sitio público estático (solo desarrollo local)
 # Montado AL FINAL para que NUNCA intercepte rutas de API.
 # Starlette usa el primer match; si este mount estuviera antes de los
-# @app.post decorators, "/" daría match parcial y devolvería 405.
+# routers de API, "/" daría match parcial y devolvería 405.
 # En producción: el sitio va a GitHub Pages, este mount no aplica.
 # ---------------------------------------------------------------------------
 _web_dir = Path(__file__).parent.parent / "web-publico"

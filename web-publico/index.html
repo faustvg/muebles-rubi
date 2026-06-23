@@ -1180,7 +1180,7 @@
   /* ─────────────────────────────────────────────────────────────
      CONFIGURACIÓN — un solo lugar para cambiar en producción
      ───────────────────────────────────────────────────────────── */
-  const API_BASE  = ''               // Producción: 'https://api.galerias-rubi.com'
+  const API_BASE  = '/api'           // Producción: 'https://api.galerias-rubi.com/api'
   const WA_NUMBER = '5217225723939'
 
   /* ── helpers ── */
@@ -1189,7 +1189,7 @@
   function fotoUrl(ruta) {
     if (!ruta) return null
     if (ruta.startsWith('http')) return ruta
-    return `${API_BASE}/uploads/${ruta}`
+    return `/uploads/${ruta}`   // /uploads no va bajo /api — nginx lo sirve directo
   }
 
   function esc(texto) {

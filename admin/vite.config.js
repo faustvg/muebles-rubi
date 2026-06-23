@@ -13,14 +13,14 @@ export default defineConfig({
     // Esto evita errores CORS en desarrollo, y en producción nginx
     // hace lo mismo con un proxy_pass al backend.
     proxy: {
+      // FastAPI ahora sirve /api/... nativamente — no hay que reescribir el path.
+      // En producción, nginx hace lo mismo con proxy_pass al backend.
       '/api': {
         target: 'http://localhost:8000',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
       },
       // Redirige /uploads/* → http://localhost:8000/uploads/*
-      // Así las URLs de imágenes son iguales en dev y en producción
-      // (en prod, nginx las sirve directamente sin pasar por FastAPI).
+      // En prod, nginx las sirve directamente sin pasar por FastAPI.
       '/uploads': {
         target: 'http://localhost:8000',
         changeOrigin: true,
